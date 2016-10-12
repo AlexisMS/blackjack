@@ -6,7 +6,8 @@ class Dealer extends Player{
 
 	Dealer(){
 		super();
-		deck = new ArrayList<String>(52);
+		deck = new ArrayList<String>(52); //welp, gotta create dat deck card-by-fucking-card. could be simpler if I didn't put the suit in each card (aka could just put two 'for' loops in about 4 lines),
+										  // but I'll need the suit later so yeah.
 	    deck.add("Ac");
 	    deck.add("2c");
 	    deck.add("3c");

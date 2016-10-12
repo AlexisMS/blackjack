@@ -22,7 +22,7 @@ class Aplicacao implements ActionListener {
     this.dealer = dealer;
   }
   
-  private void deckcheck(ArrayList deck){
+  private void deckcheck(ArrayList deck){ //DEBUG ONLY
     for(int i=0; i<deck.size(); i++ ){
       System.out.println(deck.get(i));
     }
@@ -34,23 +34,27 @@ class Aplicacao implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     JButton end;
     tela.add(end = new JButton("STAHP"), BorderLayout.PAGE_START);
-    end.addActionListener(new EndGame(r,b,end,tela,player,dealer));
-    dealer.drawCard();
-    player.receiveCard(dealer.giveCard());                             //adds the card to the player's hand
-    //this.deckcheck(deck);//DEBUG ONLY
-    r.setText(String.valueOf(player.calcScore()) + " : " + player.getHand());
-    b.setText("HIT ME");
-    if (player.calcScore() == 21){
-     r.setText("YOU WIN");
-     tela.remove(b);
-     tela.remove(end);
-    } else if (player.calcScore() > 21){
-     r.setText("YOU LOSE");
-     tela.remove(b);
-     tela.remove(end);
-    }
-    tela.repaint();
+    end.addActionListener(new EndGame(r,b,end,tela,player,dealer)); //sets up the stop button
 
+    dealer.drawCard();
+    player.receiveCard(dealer.giveCard());
+    //this.deckcheck(deck);//DEBUG ONLY
+
+    r.setText(String.valueOf(player.calcScore()) + " : " + player.getHand()); // shows the player score and hand
+    b.setText("HIT ME");
+
+    //checks for win/lose conditions that doesn't require checking the dealer's hand
+    if (player.calcScore() == 21){
+     r.setText("YOU WIN [score: " + String.valueOf(player.calcScore()) + "]");
+     tela.remove(end);
+     tela.remove(b);     
+    } else if (player.calcScore() > 21){
+     r.setText("YOU LOSE [score: " + String.valueOf(player.calcScore()) + "]");
+     tela.remove(end);
+     tela.remove(b);
+    }
+
+    tela.repaint();
   }
 
 }

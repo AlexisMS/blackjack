@@ -13,7 +13,7 @@ class Player{
 		hand.add(card);
 	}
 
-	private int simpleScore(int current_score){
+	private int simpleScore(int current_score){ //checks score when the A rule doesn't come up
 		for(int i=0; i<hand.size(); i++){
 				switch (hand.get(i)){
 					case "Ac" : case "Ad" : case "Ah" : case "As" :
@@ -66,7 +66,7 @@ class Player{
 	int calcScore(){
 		score = 0;
 		score = this.simpleScore(score);
-		if(hand.contains("Ac") || hand.contains("Ad") || hand.contains("Ah") || hand.contains("As")){
+		if(hand.contains("Ac") || hand.contains("Ad") || hand.contains("Ah") || hand.contains("As")){ //aditional calculation required for when the A rule comes up (A can be either 1 or 11)
 			int temp_score = score + 10;
 			if (temp_score < 22)
 				score = temp_score;
