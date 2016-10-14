@@ -8,18 +8,21 @@ import java.awt.event.*;
 class Aplicacao implements ActionListener {
   JLabel r;
   JButton b;
+  JButton end;
   JPanel tela;
   Player player;
   Dealer dealer;
+  boolean first = true;
   //ArrayList<String> playerhand = new ArrayList<String>();
   
   
-  Aplicacao(JLabel r, JButton b, JPanel tela, Player player, Dealer dealer) {
+  Aplicacao(JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
     this.r = r;
     this.b = b;
     this.tela = tela;
     this.player = player;
     this.dealer = dealer;
+    this.end = end;
   }
   
   private void deckcheck(ArrayList deck){ //DEBUG ONLY
@@ -32,9 +35,12 @@ class Aplicacao implements ActionListener {
   }
   
   public void actionPerformed(ActionEvent e) {
-    JButton end;
-    tela.add(end = new JButton("STAHP"), BorderLayout.PAGE_START);
+    if (first){
+    //JButton end;
+    tela.add(end, BorderLayout.PAGE_START);
     end.addActionListener(new EndGame(r,b,end,tela,player,dealer)); //sets up the stop button
+    first = false;
+    }
 
     dealer.drawCard();
     player.receiveCard(dealer.giveCard());
