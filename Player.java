@@ -2,7 +2,7 @@ import java.util.*;
 
 class Player{
 	ArrayList<String> hand;
-	private int score;
+	protected int score;
 
 	Player(){
 		hand = new ArrayList<String>();
@@ -76,6 +76,11 @@ class Player{
 
 	String getHand(){
 		return hand.toString();
+	}
+
+	void reset(){
+		hand.clear();
+		score = 0;
 	}
 
 }

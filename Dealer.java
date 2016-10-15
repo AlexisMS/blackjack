@@ -6,10 +6,36 @@ class Dealer extends Player{
 
 	Dealer(){
 		super();
-		deck = new ArrayList<String>(52); //welp, gotta create dat deck card-by-fucking-card. could be simpler if I didn't put the suit in each card (aka could just put two 'for' loops in about 4 lines),
-										  // but I'll need the suit later so yeah.
-	    deck.add("Ac");
-	    deck.add("2c");
+		deck = new ArrayList<String>(52);
+	    this.resetDeck();
+	}
+
+	void deckcheck(){ //DEBUG ONLY
+	    for(int i=0; i<deck.size(); i++ ){
+	      System.out.println(deck.get(i));
+	    }
+	   System.out.println("===");
+	   System.out.println(deck.size());
+	   System.out.println("===");
+	}
+
+	String giveCard(){
+		int next = ThreadLocalRandom.current().nextInt(0, deck.size());
+		String card = deck.get(next);
+		deck.remove(next);
+		deck.trimToSize();
+		return card;
+	}
+
+	void drawCard(){
+		hand.add(giveCard());
+	}
+
+	void resetDeck(){
+		deck.clear();
+		deck.trimToSize();
+		deck.add("Ac"); //welp, gotta create dat deck card-by-fucking-card. could be simpler if I didn't put the suit in each card (aka could just put two 'for' loops in about 4 lines),
+	    deck.add("2c"); // but I'll need the suit later so yeah.
 	    deck.add("3c");
 	    deck.add("4c");
 	    deck.add("5c");
@@ -62,16 +88,11 @@ class Dealer extends Player{
 	    deck.add("Ks");
 	}
 
-	String giveCard(){
-		int next = ThreadLocalRandom.current().nextInt(0, deck.size());
-		String card = deck.get(next);
-		deck.remove(next);
-		deck.trimToSize();
-		return card;
-	}
-
-	void drawCard(){
-		hand.add(giveCard());
+	@Override
+	void reset(){
+		hand.clear();
+		score = 0;
+		this.resetDeck();
 	}
 
 

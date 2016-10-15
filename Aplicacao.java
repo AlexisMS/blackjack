@@ -13,7 +13,6 @@ class Aplicacao implements ActionListener {
   Player player;
   Dealer dealer;
   boolean first = true;
-  //ArrayList<String> playerhand = new ArrayList<String>();
   
   
   Aplicacao(JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
@@ -24,16 +23,7 @@ class Aplicacao implements ActionListener {
     this.dealer = dealer;
     this.end = end;
   }
-  
-  private void deckcheck(ArrayList deck){ //DEBUG ONLY
-    for(int i=0; i<deck.size(); i++ ){
-      System.out.println(deck.get(i));
-    }
-   System.out.println("===");
-   System.out.println(deck.size());
-   System.out.println("===");
-  }
-  
+    
   public void actionPerformed(ActionEvent e) {
     if (first){
     //JButton end;
@@ -44,7 +34,7 @@ class Aplicacao implements ActionListener {
 
     dealer.drawCard();
     player.receiveCard(dealer.giveCard());
-    //this.deckcheck(deck);//DEBUG ONLY
+    dealer.deckcheck();//DEBUG ONLY
 
     r.setText(String.valueOf(player.calcScore()) + " : " + player.getHand()); // shows the player score and hand
     b.setText("HIT ME");
