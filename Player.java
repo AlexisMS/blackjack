@@ -3,6 +3,7 @@ import java.util.*;
 class Player{
 	ArrayList<String> hand;
 	protected int score;
+	boolean resetStatus = false;
 
 	Player(){
 		hand = new ArrayList<String>();
@@ -83,4 +84,11 @@ class Player{
 		score = 0;
 	}
 
+	boolean getStatus(){
+		return resetStatus;
+	}
+
+	void setStatus(boolean state){
+		resetStatus = state;
+	}
 }

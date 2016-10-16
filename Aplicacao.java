@@ -25,19 +25,28 @@ class Aplicacao implements ActionListener {
   }
     
   public void actionPerformed(ActionEvent e) {
+    if(player.getStatus()){
+      first = true;
+      player.setStatus(false);
+      
+    }
+
     if (first){
     //JButton end;
     tela.add(end, BorderLayout.PAGE_START);
     end.addActionListener(new EndGame(r,b,end,tela,player,dealer)); //sets up the stop button
     first = false;
+    player.reset();
+    dealer.reset();
+    b.setText("HIT ME");
     }
 
     dealer.drawCard();
     player.receiveCard(dealer.giveCard());
-    dealer.deckcheck();//DEBUG ONLY
+    //dealer.deckcheck();//DEBUG ONLY
 
     r.setText(String.valueOf(player.calcScore()) + " : " + player.getHand()); // shows the player score and hand
-    b.setText("HIT ME");
+    
 
     //checks for win/lose conditions that doesn't require checking the dealer's hand
     if (player.calcScore() == 21){

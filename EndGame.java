@@ -21,7 +21,9 @@ class EndGame implements ActionListener{
 
 	public void actionPerformed(ActionEvent e){
 		tela.remove(end);
-    tela.remove(b);
+    	//tela.remove(b);
+    	b.setText("Play again?");
+    	player.setStatus(true);
     
 		while (dealer.calcScore()<17){ //blackjack end-game basic dealer rule
 			dealer.drawCard();
