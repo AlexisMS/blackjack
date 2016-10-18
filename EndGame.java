@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 class EndGame implements ActionListener{
+	JLabel left;
+	JLabel right;
 	JLabel r;
 	JButton b;
 	JButton end;
@@ -10,7 +12,9 @@ class EndGame implements ActionListener{
 	Player player;
 	Dealer dealer;
 
-	EndGame(JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
+	EndGame(JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
+    this.left = left;
+    this.right = right;
     this.r = r;
     this.b = b;
     this.end = end;
@@ -30,11 +34,11 @@ class EndGame implements ActionListener{
 		}
 
     //shows the dealer's and the player's score and hand
-		JLabel left;
-		tela.add(left = new JLabel("temp"), BorderLayout.LINE_START);
+		//JLabel left;
+		tela.add(left, BorderLayout.LINE_START);
 		left.setText("DEALER: " + String.valueOf(dealer.calcScore()) + " : " + dealer.getHand());
-		JLabel right;
-		tela.add(right = new JLabel("temp"), BorderLayout.LINE_END);
+		//JLabel right;
+		tela.add(right, BorderLayout.LINE_END);
 		right.setText("YOU: " + String.valueOf(player.calcScore()) + " : " + player.getHand());
 
     //checks for win/lose conditions that require comparing the score of the player with the score of the dealer

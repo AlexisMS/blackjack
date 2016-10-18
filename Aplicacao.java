@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 class Aplicacao implements ActionListener {
+  JLabel left;
+  JLabel right;
   JLabel r;
   JButton b;
   JButton end;
@@ -15,7 +17,9 @@ class Aplicacao implements ActionListener {
   boolean first = true;
   
   
-  Aplicacao(JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
+  Aplicacao(JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
+    this.left = left;
+    this.right = right;
     this.r = r;
     this.b = b;
     this.tela = tela;
@@ -28,17 +32,19 @@ class Aplicacao implements ActionListener {
     if(player.getStatus()){
       first = true;
       player.setStatus(false);
-      
     }
 
     if (first){
     //JButton end;
     tela.add(end, BorderLayout.PAGE_START);
-    end.addActionListener(new EndGame(r,b,end,tela,player,dealer)); //sets up the stop button
+    end.addActionListener(new EndGame(left,right,r,b,end,tela,player,dealer)); //sets up the stop button
     first = false;
     player.reset();
     dealer.reset();
-    b.setText("HIT ME");
+    left.setText(" ");
+    right.setText(" ");
+    //tela.remove(left);
+    //tela.remove(right);
     }
 
     dealer.drawCard();
@@ -46,17 +52,21 @@ class Aplicacao implements ActionListener {
     //dealer.deckcheck();//DEBUG ONLY
 
     r.setText(String.valueOf(player.calcScore()) + " : " + player.getHand()); // shows the player score and hand
-    
+    b.setText("HIT ME");
 
     //checks for win/lose conditions that doesn't require checking the dealer's hand
     if (player.calcScore() == 21){
      r.setText("YOU WIN [score: " + String.valueOf(player.calcScore()) + "]");
      tela.remove(end);
-     tela.remove(b);     
+     //tela.remove(b); 
+     b.setText("Play again?");
+     player.setStatus(true);    
     } else if (player.calcScore() > 21){
      r.setText("YOU LOSE [score: " + String.valueOf(player.calcScore()) + "]");
      tela.remove(end);
-     tela.remove(b);
+     //tela.remove(b);
+     b.setText("Play again?");
+     player.setStatus(true);
     }
 
     tela.repaint();

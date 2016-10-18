@@ -21,12 +21,14 @@ class Main {
   static void configTela(JPanel tela) {
     JLabel r;
     JButton b;
+    JLabel left = new JLabel("DEALER");
+    JLabel right = new JLabel("YOU");
     JButton end = new JButton("STAHP");
     Player player = new Player();
     Dealer dealer = new Dealer();
     tela.setLayout(new BorderLayout(10,10));
     tela.add(r=new JLabel("BLACKJACK", SwingConstants.CENTER),BorderLayout.CENTER);
     tela.add(b=new JButton("play"),BorderLayout.PAGE_END);
-    b.addActionListener(new Aplicacao(r,b,end,tela,player,dealer));
+    b.addActionListener(new Aplicacao(left,right,r,b,end,tela,player,dealer));
   } 
 }

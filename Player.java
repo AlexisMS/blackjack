@@ -1,9 +1,9 @@
 import java.util.*;
 
 class Player{
-	ArrayList<String> hand;
+	protected ArrayList<String> hand;
 	protected int score;
-	boolean resetStatus = false;
+	private boolean resetStatus = false;
 
 	Player(){
 		hand = new ArrayList<String>();
@@ -88,7 +88,8 @@ class Player{
 		return resetStatus;
 	}
 
-	void setStatus(boolean state){
-		resetStatus = state;
+	void setStatus(boolean newStatus){
+		resetStatus = newStatus;
 	}
+
 }
