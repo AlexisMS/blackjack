@@ -22,9 +22,10 @@ class Aplicacao implements ActionListener {
   JLabel card3;
   JLabel card4;
   JLabel card5;
+  JPanel buttons;
   private int currentcard = 0;
   
-  Aplicacao(JLabel card1, JLabel card2, JLabel card3, JLabel card4, JLabel card5, JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
+  Aplicacao(JPanel buttons, JLabel card1, JLabel card2, JLabel card3, JLabel card4, JLabel card5, JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
     this.left = left;
     this.right = right;
     this.r = r;
@@ -38,6 +39,7 @@ class Aplicacao implements ActionListener {
     this.card3 = card3;
     this.card4 = card4;
     this.card5 = card5;
+    this.buttons = buttons;
   }
     
   public void actionPerformed(ActionEvent e) {
@@ -47,9 +49,8 @@ class Aplicacao implements ActionListener {
     }
 
     if (first){
-    //JButton end;
-    tela.add(end, BorderLayout.PAGE_START);
-    end.addActionListener(new EndGame(card1,card2,card3,card4,card5,left,right,r,b,end,tela,player,dealer)); //sets up the stop button
+    buttons.add(end);
+    end.addActionListener(new EndGame(buttons,card1,card2,card3,card4,card5,left,right,r,b,end,tela,player,dealer)); //sets up the stop button
     first = false;
     currentcard = 0;
     card1.setIcon(null);
@@ -61,8 +62,6 @@ class Aplicacao implements ActionListener {
     dealer.reset();
     left.setText(" ");
     right.setText(" ");
-    //tela.remove(left);
-    //tela.remove(right);
     }
 
     dealer.drawCard();
@@ -72,7 +71,7 @@ class Aplicacao implements ActionListener {
     r.setText(String.valueOf(player.calcScore())); // shows the player score
 
     ImageIcon imagem = new ImageIcon("img/" + player.hand.get(currentcard) + ".png");
-    currentcard++;
+    
 	switch(currentcard){
 		case 0:
 			card1.setIcon(imagem);
@@ -92,19 +91,19 @@ class Aplicacao implements ActionListener {
 		default:
 			break;
 	}
+	currentcard++;
+	
     b.setText("HIT ME");
 
     //checks for win/lose conditions that doesn't require checking the dealer's hand
     if (player.calcScore() == 21){
      r.setText("YOU WIN [score: " + String.valueOf(player.calcScore()) + "]");
-     tela.remove(end);
-     //tela.remove(b); 
+     buttons.remove(end);
      b.setText("Play again?");
      player.setStatus(true);    
     } else if (player.calcScore() > 21){
      r.setText("YOU LOSE [score: " + String.valueOf(player.calcScore()) + "]");
-     tela.remove(end);
-     //tela.remove(b);
+     buttons.remove(end);
      b.setText("Play again?");
      player.setStatus(true);
     }

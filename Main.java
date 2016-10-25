@@ -14,7 +14,7 @@ class Main {
     f.setContentPane(tela);
     configTela(tela);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    f.setSize(1200,800); //lar x alt
+    f.setSize(800,600); //lar x alt
     //f.pack();
     f.setVisible(true);
   }
@@ -26,6 +26,7 @@ class Main {
     JLabel r=new JLabel("BLACKJACK", SwingConstants.CENTER);
     r.setVerticalAlignment(SwingConstants.BOTTOM);
 
+    JPanel buttons = new JPanel();
     JPanel centerhand = new JPanel();
     JLabel card1 = new JLabel();
     JLabel card2 = new JLabel();
@@ -48,7 +49,8 @@ class Main {
     centerhand.add(card3);
     centerhand.add(card4);
     centerhand.add(card5);
-    tela.add(b=new JButton("play"),BorderLayout.PAGE_END);
-    b.addActionListener(new Aplicacao(card1,card2,card3,card4,card5,left,right,r,b,end,tela,player,dealer));
+    tela.add(buttons,BorderLayout.PAGE_END);
+    buttons.add(b=new JButton("play"));
+    b.addActionListener(new Aplicacao(buttons,card1,card2,card3,card4,card5,left,right,r,b,end,tela,player,dealer));
   } 
 }

@@ -16,8 +16,9 @@ class EndGame implements ActionListener{
 	JLabel card3;
 	JLabel card4;
 	JLabel card5;
+	JPanel buttons;
 
-	EndGame(JLabel card1, JLabel card2, JLabel card3, JLabel card4, JLabel card5, JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
+	EndGame(JPanel buttons, JLabel card1, JLabel card2, JLabel card3, JLabel card4, JLabel card5, JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
     this.left = left;
     this.right = right;
     this.r = r;
@@ -31,11 +32,11 @@ class EndGame implements ActionListener{
     this.card3 = card3;
     this.card4 = card4;
     this.card5 = card5;
+    this.buttons = buttons;
 	}
 
 	public void actionPerformed(ActionEvent e){
-		tela.remove(end);
-    	//tela.remove(b);
+		buttons.remove(end);
     	b.setText("Play again?");
     	player.setStatus(true);
     	card1.setIcon(null);
