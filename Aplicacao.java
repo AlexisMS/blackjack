@@ -52,6 +52,11 @@ class Aplicacao implements ActionListener {
     end.addActionListener(new EndGame(card1,card2,card3,card4,card5,left,right,r,b,end,tela,player,dealer)); //sets up the stop button
     first = false;
     currentcard = 0;
+    card1.setIcon(null);
+	card2.setIcon(null);
+	card3.setIcon(null);
+	card4.setIcon(null);
+	card5.setIcon(null);
     player.reset();
     dealer.reset();
     left.setText(" ");
