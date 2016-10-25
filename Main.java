@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+//import acm.*;
 
 class Main {
 
@@ -13,13 +14,25 @@ class Main {
     f.setContentPane(tela);
     configTela(tela);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    f.setSize(500,400); //lar x alt
+    f.setSize(1200,800); //lar x alt
     //f.pack();
     f.setVisible(true);
   }
 
   static void configTela(JPanel tela) {
-    JLabel r;
+  	JPanel playarea = new JPanel();
+  	playarea.setLayout(new BorderLayout(10,10));
+
+    JLabel r=new JLabel("BLACKJACK", SwingConstants.CENTER);
+    r.setVerticalAlignment(SwingConstants.BOTTOM);
+
+    JPanel centerhand = new JPanel();
+    JLabel card1 = new JLabel();
+    JLabel card2 = new JLabel();
+    JLabel card3 = new JLabel();
+    JLabel card4 = new JLabel();
+    JLabel card5 = new JLabel();
+
     JButton b;
     JLabel left = new JLabel("DEALER");
     JLabel right = new JLabel("YOU");
@@ -27,8 +40,15 @@ class Main {
     Player player = new Player();
     Dealer dealer = new Dealer();
     tela.setLayout(new BorderLayout(10,10));
-    tela.add(r=new JLabel("BLACKJACK", SwingConstants.CENTER),BorderLayout.CENTER);
+    tela.add(playarea,BorderLayout.CENTER);
+    playarea.add(r,BorderLayout.CENTER);
+    playarea.add(centerhand,BorderLayout.PAGE_END);
+    centerhand.add(card1);
+    centerhand.add(card2);
+    centerhand.add(card3);
+    centerhand.add(card4);
+    centerhand.add(card5);
     tela.add(b=new JButton("play"),BorderLayout.PAGE_END);
-    b.addActionListener(new Aplicacao(left,right,r,b,end,tela,player,dealer));
+    b.addActionListener(new Aplicacao(card1,card2,card3,card4,card5,left,right,r,b,end,tela,player,dealer));
   } 
 }

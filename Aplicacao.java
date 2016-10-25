@@ -15,9 +15,16 @@ class Aplicacao implements ActionListener {
   Player player;
   Dealer dealer;
   boolean first = true;
+
+
+  JLabel card1;
+  JLabel card2;
+  JLabel card3;
+  JLabel card4;
+  JLabel card5;
+  private int currentcard = 0;
   
-  
-  Aplicacao(JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
+  Aplicacao(JLabel card1, JLabel card2, JLabel card3, JLabel card4, JLabel card5, JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
     this.left = left;
     this.right = right;
     this.r = r;
@@ -26,6 +33,11 @@ class Aplicacao implements ActionListener {
     this.player = player;
     this.dealer = dealer;
     this.end = end;
+    this.card1 = card1;
+    this.card2 = card2;
+    this.card3 = card3;
+    this.card4 = card4;
+    this.card5 = card5;
   }
     
   public void actionPerformed(ActionEvent e) {
@@ -37,8 +49,9 @@ class Aplicacao implements ActionListener {
     if (first){
     //JButton end;
     tela.add(end, BorderLayout.PAGE_START);
-    end.addActionListener(new EndGame(left,right,r,b,end,tela,player,dealer)); //sets up the stop button
+    end.addActionListener(new EndGame(card1,card2,card3,card4,card5,left,right,r,b,end,tela,player,dealer)); //sets up the stop button
     first = false;
+    currentcard = 0;
     player.reset();
     dealer.reset();
     left.setText(" ");
@@ -51,7 +64,29 @@ class Aplicacao implements ActionListener {
     player.receiveCard(dealer.giveCard());
     //dealer.deckcheck();//DEBUG ONLY
 
-    r.setText(String.valueOf(player.calcScore()) + " : " + player.getHand()); // shows the player score and hand
+    r.setText(String.valueOf(player.calcScore())); // shows the player score
+
+    ImageIcon imagem = new ImageIcon("img/" + player.hand.get(currentcard) + ".png");
+    currentcard++;
+	switch(currentcard){
+		case 0:
+			card1.setIcon(imagem);
+			break;
+		case 1:
+			card2.setIcon(imagem);
+			break;
+		case 2:
+			card3.setIcon(imagem);
+			break;
+		case 3:
+			card4.setIcon(imagem);
+			break;
+		case 4:
+			card5.setIcon(imagem);
+			break;
+		default:
+			break;
+	}
     b.setText("HIT ME");
 
     //checks for win/lose conditions that doesn't require checking the dealer's hand

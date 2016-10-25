@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Player{
-	protected ArrayList<String> hand;
+	public ArrayList<String> hand;
 	protected int score;
 	private boolean resetStatus = false;
 
@@ -74,6 +74,11 @@ class Player{
 		}
 		return score;
 	}
+
+	/*ArrayList<String> getHand(){
+		//return hand.toString();
+		return hand;
+	}*/
 
 	String getHand(){
 		return hand.toString();

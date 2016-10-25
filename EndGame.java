@@ -11,8 +11,13 @@ class EndGame implements ActionListener{
 	JPanel tela;
 	Player player;
 	Dealer dealer;
+	JLabel card1;
+	JLabel card2;
+	JLabel card3;
+	JLabel card4;
+	JLabel card5;
 
-	EndGame(JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
+	EndGame(JLabel card1, JLabel card2, JLabel card3, JLabel card4, JLabel card5, JLabel left, JLabel right, JLabel r, JButton b, JButton end, JPanel tela, Player player, Dealer dealer) {
     this.left = left;
     this.right = right;
     this.r = r;
@@ -21,6 +26,11 @@ class EndGame implements ActionListener{
     this.tela = tela;
     this.player = player;
     this.dealer = dealer;
+    this.card1 = card1;
+    this.card2 = card2;
+    this.card3 = card3;
+    this.card4 = card4;
+    this.card5 = card5;
 	}
 
 	public void actionPerformed(ActionEvent e){
@@ -28,6 +38,11 @@ class EndGame implements ActionListener{
     	//tela.remove(b);
     	b.setText("Play again?");
     	player.setStatus(true);
+    	card1.setIcon(null);
+    	card2.setIcon(null);
+    	card3.setIcon(null);
+    	card4.setIcon(null);
+    	card5.setIcon(null);
     
 		while (dealer.calcScore()<17){ //blackjack end-game basic dealer rule
 			dealer.drawCard();
