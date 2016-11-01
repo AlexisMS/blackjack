@@ -47,7 +47,7 @@ class Dealer extends Player{
 	    deck.add("Jc");
 	    deck.add("Qc");
 	    deck.add("Kc");
-	    /*deck.add("Ad");
+	    deck.add("Ad");
 	    deck.add("2d");
 	    deck.add("3d");
 	    deck.add("4d");
@@ -85,7 +85,7 @@ class Dealer extends Player{
 	    deck.add("10s");
 	    deck.add("Js");
 	    deck.add("Qs");
-	    deck.add("Ks");*/
+	    deck.add("Ks");
 	}
 
 	@Override

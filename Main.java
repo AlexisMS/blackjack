@@ -33,6 +33,13 @@ class Main {
     JLabel card3 = new JLabel();
     JLabel card4 = new JLabel();
     JLabel card5 = new JLabel();
+    JLabel card1d = new JLabel();
+    JLabel card2d = new JLabel();
+    JLabel card3d = new JLabel();
+    JLabel card4d = new JLabel();
+    JLabel card5d = new JLabel();
+    //JLabel cardDealer = new JLabel(" ",SwingConstants.CENTER);
+    JPanel cardDealer = new JPanel();
 
     JButton b;
     JLabel left = new JLabel("DEALER");
@@ -44,13 +51,19 @@ class Main {
     tela.add(playarea,BorderLayout.CENTER);
     playarea.add(r,BorderLayout.CENTER);
     playarea.add(centerhand,BorderLayout.PAGE_END);
+    playarea.add(cardDealer,BorderLayout.PAGE_START);
     centerhand.add(card1);
     centerhand.add(card2);
     centerhand.add(card3);
     centerhand.add(card4);
     centerhand.add(card5);
+    cardDealer.add(card1d);
+    cardDealer.add(card2d);
+    cardDealer.add(card3d);
+    cardDealer.add(card4d);
+    cardDealer.add(card5d);
     tela.add(buttons,BorderLayout.PAGE_END);
     buttons.add(b=new JButton("play"));
-    b.addActionListener(new Aplicacao(buttons,card1,card2,card3,card4,card5,left,right,r,b,end,tela,player,dealer));
+    b.addActionListener(new Aplicacao(buttons,card1,card2,card3,card4,card5, card1d,card2d,card3d,card4d,card5d, left,right,r,b,end,tela,player,dealer));
   } 
 }
