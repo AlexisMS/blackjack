@@ -1,0 +1,12 @@
+[polish and fixes]
+>organize the layout of the endgame screen (stop using left and right)
+>icon for the title card in the opening screen
+>icons for winning and losing
+>background
+
+[possible new features]
+>cassino mode, with beting chips
+|>the extra rule for when the dealer opens with an ace
+>player history and rankings
+>probability calculator for the player (easy mode)
+>probability calculator for the dealer (hard mode)
