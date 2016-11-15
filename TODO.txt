@@ -10,3 +10,9 @@
 >player history and rankings
 >probability calculator for the player (easy mode)
 >probability calculator for the dealer (hard mode)
+
+[engine genérica para jogos de cartas]
+>baralho
+>jogador
+>computador
+>regras do jogo

@@ -6,7 +6,7 @@ class Dealer extends Player{
 
 	Dealer(){
 		super();
-		deck = new ArrayList<String>(13); //default52
+		deck = new ArrayList<String>(52); //default52
 	    this.resetDeck();
 	}
 

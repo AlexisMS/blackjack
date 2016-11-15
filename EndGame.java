@@ -22,14 +22,16 @@ class EndGame implements ActionListener{
 	JLabel card3d;
 	JLabel card4d;
 	JLabel card5d;
-	//JLabel cardDealer;
+	Filemanager files;
 	JPanel buttons;
 	private int currentcard = 0;
 	private int dealerhandsize = 1;
 	ArrayList<String> dealerhand;
 	ImageIcon imagemCarta;
 
-	EndGame(JPanel buttons,
+	EndGame(
+		Filemanager files,
+		JPanel buttons,
 		JLabel card1, JLabel card2, JLabel card3, JLabel card4, JLabel card5,
 		JLabel card1d, JLabel card2d, JLabel card3d, JLabel card4d, JLabel card5d,
 		JLabel left, JLabel right,
@@ -37,6 +39,7 @@ class EndGame implements ActionListener{
 		JButton b, JButton end,
 		JPanel tela,
 		Player player, Dealer dealer) {
+    this.files = files;
     this.left = left;
     this.right = right;
     this.r = r;
@@ -105,12 +108,21 @@ class EndGame implements ActionListener{
 		right.setText("YOU: " + String.valueOf(player.calcScore()));
 
     //checks for win/lose conditions that require comparing the score of the player with the score of the dealer
-		if ((player.calcScore()>dealer.calcScore() && player.calcScore()<22) || dealer.calcScore()>21)
+		if ((player.calcScore()>dealer.calcScore() && player.calcScore()<22) || dealer.calcScore()>21){
 			r.setText("YOU WIN");
-		else if (player.calcScore()<dealer.calcScore() && dealer.calcScore()<22)
+			//files.addWin();
+			//files.writeHistory();
+		}
+		else if (player.calcScore()<dealer.calcScore() && dealer.calcScore()<22){
 			r.setText("YOU LOSE");
-		else
+			//files.addLoss();
+			//files.writeHistory();
+		}
+		else{
 			r.setText("DRAW");
+			//files.addDraw();
+			//files.writeHistory();
+		}
 		tela.repaint();
 	}
 }

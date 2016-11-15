@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.PrintWriter;
+//import java.io.File;
 //import acm.*;
 
 class Main {
@@ -9,17 +11,23 @@ class Main {
 
     JFrame f;
     f = new JFrame();
-    JPanel tela;
+    JPanel tela;    
     tela = new JPanel();
+
     f.setContentPane(tela);
     configTela(tela);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setSize(800,600); //lar x alt
     //f.pack();
     f.setVisible(true);
+
   }
 
+
   static void configTela(JPanel tela) {
+  	Filemanager files = new Filemanager();
+    files.writeHistory();
+
   	JPanel playarea = new JPanel();
   	playarea.setLayout(new BorderLayout(10,10));
 
@@ -64,6 +72,6 @@ class Main {
     cardDealer.add(card5d);
     tela.add(buttons,BorderLayout.PAGE_END);
     buttons.add(b=new JButton("play"));
-    b.addActionListener(new Aplicacao(buttons,card1,card2,card3,card4,card5, card1d,card2d,card3d,card4d,card5d, left,right,r,b,end,tela,player,dealer));
+    b.addActionListener(new Aplicacao(files, buttons,card1,card2,card3,card4,card5, card1d,card2d,card3d,card4d,card5d, left,right,r,b,end,tela,player,dealer));
   } 
 }

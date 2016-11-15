@@ -17,7 +17,7 @@ class Aplicacao implements ActionListener {
   boolean first = true;
   ArrayList<String> playerhand;
   ImageIcon imagemCardback = new ImageIcon("img/capa2.png");
-
+  Filemanager files;
   JLabel card1;
   JLabel card2;
   JLabel card3;
@@ -33,6 +33,7 @@ class Aplicacao implements ActionListener {
   private int currentcard = 0;
   
   Aplicacao(
+  		Filemanager files,
 	  	JPanel buttons, 
 	  	JLabel card1, JLabel card2, JLabel card3, JLabel card4, JLabel card5,
 	    JLabel card1d, JLabel card2d, JLabel card3d, JLabel card4d, JLabel card5d,
@@ -41,6 +42,7 @@ class Aplicacao implements ActionListener {
 	    JButton b, JButton end,
 	    JPanel tela,
 	    Player player, Dealer dealer) {
+    this.files = files;
     this.left = left;
     this.right = right;
     this.r = r;
@@ -71,7 +73,7 @@ class Aplicacao implements ActionListener {
 
     if (first){
     buttons.add(end);
-    end.addActionListener(new EndGame(buttons,card1,card2,card3,card4,card5, card1d,card2d,card3d,card4d,card5d, left,right,r,b,end,tela,player,dealer)); //sets up the stop button
+    end.addActionListener(new EndGame(files, buttons,card1,card2,card3,card4,card5, card1d,card2d,card3d,card4d,card5d, left,right,r,b,end,tela,player,dealer)); //sets up the stop button
     first = false;
     currentcard = 0;
     card1.setIcon(null);
@@ -126,16 +128,20 @@ class Aplicacao implements ActionListener {
     b.setText("HIT ME");
 
     //checks for win/lose conditions that doesn't require checking the dealer's hand
-    if (player.calcScore() == 21){
-     r.setText("YOU WIN [score: " + String.valueOf(player.calcScore()) + "]");
-     buttons.remove(end);
-     b.setText("Play again?");
-     player.setStatus(true);    
-    } else if (player.calcScore() > 21){
-     r.setText("YOU LOSE [score: " + String.valueOf(player.calcScore()) + "]");
-     buttons.remove(end);
-     b.setText("Play again?");
-     player.setStatus(true);
+	if (player.calcScore() == 21){
+	     r.setText("YOU WIN [score: " + String.valueOf(player.calcScore()) + "]");
+	     files.addWin();
+	     files.writeHistory();
+	     buttons.remove(end);
+	     b.setText("Play again?");
+	     player.setStatus(true);    
+	 } else if (player.calcScore() > 21){
+	     r.setText("YOU LOSE [score: " + String.valueOf(player.calcScore()) + "]");
+	     files.addLoss();
+	     files.writeHistory();
+	     buttons.remove(end);
+	     b.setText("Play again?");
+	     player.setStatus(true);
     }
 
     tela.repaint();
