@@ -5,8 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-//this is a commit test
-
 class Aplicacao implements ActionListener {
   JLabel left;
   JLabel right;
