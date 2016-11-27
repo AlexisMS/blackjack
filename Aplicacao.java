@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+//this is a commit test
+
 class Aplicacao implements ActionListener {
   JLabel left;
   JLabel right;
@@ -31,10 +33,10 @@ class Aplicacao implements ActionListener {
   //JLabel cardDealer;
   JPanel buttons;
   private int currentcard = 0;
-  
+
   Aplicacao(
   		Filemanager files,
-	  	JPanel buttons, 
+	  	JPanel buttons,
 	  	JLabel card1, JLabel card2, JLabel card3, JLabel card4, JLabel card5,
 	    JLabel card1d, JLabel card2d, JLabel card3d, JLabel card4d, JLabel card5d,
 	    JLabel left, JLabel right,
@@ -64,7 +66,7 @@ class Aplicacao implements ActionListener {
     //this.cardDealer = cardDealer;
     this.buttons = buttons;
   }
-    
+
   public void actionPerformed(ActionEvent e) {
     if(player.getStatus()){
       first = true;
@@ -103,7 +105,7 @@ class Aplicacao implements ActionListener {
     r.setText(String.valueOf(player.calcScore())); // shows the player score
     playerhand = player.getHandList();
     ImageIcon imagemCarta = new ImageIcon("img/" + playerhand.get(currentcard) + ".png");
-    
+
 	switch(currentcard){
 		case 0:
 			card1.setIcon(imagemCarta);
@@ -124,7 +126,7 @@ class Aplicacao implements ActionListener {
 			break;
 	}
 	currentcard++;
-	
+
     b.setText("HIT ME");
 
     //checks for win/lose conditions that doesn't require checking the dealer's hand
@@ -134,7 +136,7 @@ class Aplicacao implements ActionListener {
 	     files.writeHistory();
 	     buttons.remove(end);
 	     b.setText("Play again?");
-	     player.setStatus(true);    
+	     player.setStatus(true);
 	 } else if (player.calcScore() > 21){
 	     r.setText("YOU LOSE [score: " + String.valueOf(player.calcScore()) + "]");
 	     files.addLoss();
