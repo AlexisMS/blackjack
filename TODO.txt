@@ -16,3 +16,6 @@
 >jogador
 >computador
 >regras do jogo
+
+[teste de commit no sublime]
+>funciona!
